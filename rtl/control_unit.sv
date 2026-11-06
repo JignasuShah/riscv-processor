@@ -1,4 +1,4 @@
-module contrul_unit (
+module control_unit (
     input  logic [31:0] instruction, 
     output logic [3:0]  alu_control, 
     output logic [2:0]  imm_format,
@@ -9,7 +9,8 @@ module contrul_unit (
     output logic        mem_read, 
     output logic        mem_write, 
     output logic        branch, 
-    output logic        jump
+    output logic        jump, 
+    output logic        alu_operand_one_pc
 ); 
 
 /* 
@@ -84,6 +85,7 @@ always_comb begin
     wb_select = 2'b0;
     branch = 1'b0;
     jump = 1'b0;
+    alu_operand_one_pc = 1'b0;
     
 
     /*
@@ -280,6 +282,7 @@ always_comb begin
         wb_select = 2'b00; 
         branch = 1'b0; 
         jump = 1'b0;
+        alu_operand_one_pc = 1'b1;
     end
     endcase
 end
